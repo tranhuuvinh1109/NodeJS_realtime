@@ -8,11 +8,11 @@
 
     console.log('connection');
     socket.on('initialProjects', (projects) => {
-      console.log('-->initialProjects', projects.map(project => project.randomNumber));
+      console.log('-->initialProjects', projects.map(project => project.progress));
     });
 
     socket.on('updateProjects', (projects) => {
-      console.log('-->updateProjects', projects.map(project => project.randomNumber));
+      console.log('-->updateProjects', projects.map(project => project.progress));
     });
 
     console.log('end');

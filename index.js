@@ -12,64 +12,168 @@ const io = socketIo(server, {
 	}
 });
 const PORT = process.env.PORT || 3001;
-// Danh sách dự án mẫu với randomNumber thay đổi liên tục
 const projects = [
 	{
 		id: 1,
 		projectName: "Project name 1",
 		user: {
 			id: 1,
-			avatar: "https://khoinguonsangtao.vn/wp-content/uploads/2022/08/hinh-nen-ronaldo-1.jpg",
+			avatar:
+				"https://khoinguonsangtao.vn/wp-content/uploads/2022/08/hinh-nen-ronaldo-1.jpg",
 			username: "Adam Smith",
 			email: "adam@gmail.com",
 		},
 		status: "done",
-		randomNumber: 100,
+		progress: 100,
+		linkDrive:
+			"https://drive.google.com/drive/folders/1BNV9GQAVJcZpUcV6HLwzfjE6e9cWvwQe?usp=sharing",
+		createAt: "2020-07-25T14:10:26.113Z",
 	},
 	{
 		id: 2,
 		projectName: "Project name 2",
 		user: {
 			id: 2,
-			avatar: "https://khoinguonsangtao.vn/wp-content/uploads/2022/08/hinh-nen-ronaldo-1.jpg",
+			avatar:
+				"https://khoinguonsangtao.vn/wp-content/uploads/2022/08/hinh-nen-ronaldo-1.jpg",
 			username: "Tran Hong Duc",
 			email: "tranhongduc@gmail.com",
 		},
 		status: "training",
-		randomNumber: 80,
+		progress: 80,
+		linkDrive:
+			"https://drive.google.com/drive/folders/1BNV9GQAVJcZpUcV6HLwzfjE6e9cWvwQe?usp=sharing",
+		createAt: "2020-07-25T14:10:26.113Z",
 	},
 	{
 		id: 3,
 		projectName: "Project name 3",
 		user: {
 			id: 3,
-			avatar: "https://khoinguonsangtao.vn/wp-content/uploads/2022/08/hinh-nen-ronaldo-1.jpg",
+			avatar:
+				"https://khoinguonsangtao.vn/wp-content/uploads/2022/08/hinh-nen-ronaldo-1.jpg",
 			username: "Phan Tan Quynh",
 			email: "phantanquynh@gmail.com",
 		},
 		status: "done",
-		randomNumber: 100,
+		progress: 100,
+		linkDrive:
+			"https://drive.google.com/drive/folders/1BNV9GQAVJcZpUcV6HLwzfjE6e9cWvwQe?usp=sharing",
+		createAt: "2020-07-25T14:10:26.113Z",
 	},
 	{
 		id: 4,
 		projectName: "Project name 4",
 		user: {
 			id: 4,
-			avatar: "https://khoinguonsangtao.vn/wp-content/uploads/2022/08/hinh-nen-ronaldo-1.jpg",
+			avatar:
+				"https://khoinguonsangtao.vn/wp-content/uploads/2022/08/hinh-nen-ronaldo-1.jpg",
 			username: "Nguyen Van Khoa",
 			email: "KhoaKun27@gmail.com",
 		},
 		status: "training",
-		randomNumber: 50,
-	}
+		progress: 50,
+		linkDrive:
+			"https://drive.google.com/drive/folders/1BNV9GQAVJcZpUcV6HLwzfjE6e9cWvwQe?usp=sharing",
+		createAt: "2020-07-25T14:10:26.113Z",
+	},
+	{
+		id: 5,
+		projectName: "Project name 5",
+		user: {
+			id: 5,
+			avatar:
+				"https://khoinguonsangtao.vn/wp-content/uploads/2022/08/hinh-nen-ronaldo-1.jpg",
+			username: "Le Tien Dat",
+			email: "Dat1lit@gmail.com",
+		},
+		status: "training",
+		progress: 95,
+		linkDrive:
+			"https://drive.google.com/drive/folders/1BNV9GQAVJcZpUcV6HLwzfjE6e9cWvwQe?usp=sharing",
+		createAt: "2020-07-25T14:10:26.113Z",
+	},
+	{
+		id: 6,
+		projectName: "Project name 5",
+		user: {
+			id: 5,
+			avatar:
+				"https://khoinguonsangtao.vn/wp-content/uploads/2022/08/hinh-nen-ronaldo-1.jpg",
+			username: "Le Tien Dat",
+			email: "Dat1lit@gmail.com",
+		},
+		status: "training",
+		progress: 95,
+		linkDrive:
+			"https://drive.google.com/drive/folders/1BNV9GQAVJcZpUcV6HLwzfjE6e9cWvwQe?usp=sharing",
+		createAt: "2020-07-25T14:10:26.113Z",
+	},
+	{
+		id: 7,
+		projectName: "Project name 5",
+		user: {
+			id: 5,
+			avatar:
+				"https://khoinguonsangtao.vn/wp-content/uploads/2022/08/hinh-nen-ronaldo-1.jpg",
+			username: "Le Tien Dat",
+			email: "Dat1lit@gmail.com",
+		},
+		status: "training",
+		progress: 95,
+		linkDrive:
+			"https://drive.google.com/drive/folders/1BNV9GQAVJcZpUcV6HLwzfjE6e9cWvwQe?usp=sharing",
+		createAt: "2020-07-25T14:10:26.113Z",
+	},
+	{
+		id: 8,
+		projectName: "Project name 5",
+		user: {
+			id: 5,
+			avatar:
+				"https://khoinguonsangtao.vn/wp-content/uploads/2022/08/hinh-nen-ronaldo-1.jpg",
+			username: "Le Tien Dat",
+			email: "Dat1lit@gmail.com",
+		},
+		status: "training",
+		progress: 95,
+		linkDrive:
+			"https://drive.google.com/drive/folders/1BNV9GQAVJcZpUcV6HLwzfjE6e9cWvwQe?usp=sharing",
+		createAt: "2020-07-25T14:10:26.113Z",
+	},
+	{
+		id: 9,
+		projectName: "Project name 5",
+		user: {
+			id: 5,
+			avatar:
+				"https://khoinguonsangtao.vn/wp-content/uploads/2022/08/hinh-nen-ronaldo-1.jpg",
+			username: "Le Tien Dat",
+			email: "Dat1lit@gmail.com",
+		},
+		status: "training",
+		progress: 95,
+		linkDrive:
+			"https://drive.google.com/drive/folders/1BNV9GQAVJcZpUcV6HLwzfjE6e9cWvwQe?usp=sharing",
+		createAt: "2020-07-25T14:10:26.113Z",
+	},
 ];
+
+function getRandomNumberInRange (a, b) {
+	const randomNumber = Math.floor(Math.random() * (b - a + 1)) + a;
+
+	return randomNumber;
+}
 
 io.on('connection', (socket) => {
 	socket.emit('initialProjects', projects);
 
 	const updateRandomNumbers = () => {
 		projects.forEach((project) => {
-			project.randomNumber = Math.floor(Math.random() * 100);
+			if (project.progress === 100) {
+				return;
+			}
+			project.progress = getRandomNumberInRange(project.progress, 100)
 		});
 		io.emit('updateProjects', projects);
 	};
