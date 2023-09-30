@@ -24,7 +24,7 @@ const projects = [
 			email: "adam@gmail.com",
 		},
 		status: "done",
-		progress: 100,
+		progress: 0,
 		linkDrive:
 			"https://drive.google.com/drive/folders/1BNV9GQAVJcZpUcV6HLwzfjE6e9cWvwQe?usp=sharing",
 		createAt: "2020-07-25T14:10:26.113Z",
@@ -40,7 +40,7 @@ const projects = [
 			email: "tranhongduc@gmail.com",
 		},
 		status: "training",
-		progress: 80,
+		progress: 0,
 		linkDrive:
 			"https://drive.google.com/drive/folders/1BNV9GQAVJcZpUcV6HLwzfjE6e9cWvwQe?usp=sharing",
 		createAt: "2020-07-25T14:10:26.113Z",
@@ -56,7 +56,7 @@ const projects = [
 			email: "phantanquynh@gmail.com",
 		},
 		status: "done",
-		progress: 100,
+		progress: 0,
 		linkDrive:
 			"https://drive.google.com/drive/folders/1BNV9GQAVJcZpUcV6HLwzfjE6e9cWvwQe?usp=sharing",
 		createAt: "2020-07-25T14:10:26.113Z",
@@ -72,7 +72,7 @@ const projects = [
 			email: "KhoaKun27@gmail.com",
 		},
 		status: "training",
-		progress: 50,
+		progress: 0,
 		linkDrive:
 			"https://drive.google.com/drive/folders/1BNV9GQAVJcZpUcV6HLwzfjE6e9cWvwQe?usp=sharing",
 		createAt: "2020-07-25T14:10:26.113Z",
@@ -88,7 +88,7 @@ const projects = [
 			email: "Dat1lit@gmail.com",
 		},
 		status: "training",
-		progress: 95,
+		progress: 0,
 		linkDrive:
 			"https://drive.google.com/drive/folders/1BNV9GQAVJcZpUcV6HLwzfjE6e9cWvwQe?usp=sharing",
 		createAt: "2020-07-25T14:10:26.113Z",
@@ -104,7 +104,7 @@ const projects = [
 			email: "Dat1lit@gmail.com",
 		},
 		status: "training",
-		progress: 95,
+		progress: 0,
 		linkDrive:
 			"https://drive.google.com/drive/folders/1BNV9GQAVJcZpUcV6HLwzfjE6e9cWvwQe?usp=sharing",
 		createAt: "2020-07-25T14:10:26.113Z",
@@ -120,7 +120,7 @@ const projects = [
 			email: "Dat1lit@gmail.com",
 		},
 		status: "training",
-		progress: 95,
+		progress: 0,
 		linkDrive:
 			"https://drive.google.com/drive/folders/1BNV9GQAVJcZpUcV6HLwzfjE6e9cWvwQe?usp=sharing",
 		createAt: "2020-07-25T14:10:26.113Z",
@@ -136,7 +136,7 @@ const projects = [
 			email: "Dat1lit@gmail.com",
 		},
 		status: "training",
-		progress: 95,
+		progress: 0,
 		linkDrive:
 			"https://drive.google.com/drive/folders/1BNV9GQAVJcZpUcV6HLwzfjE6e9cWvwQe?usp=sharing",
 		createAt: "2020-07-25T14:10:26.113Z",
@@ -152,7 +152,7 @@ const projects = [
 			email: "Dat1lit@gmail.com",
 		},
 		status: "training",
-		progress: 95,
+		progress: 0,
 		linkDrive:
 			"https://drive.google.com/drive/folders/1BNV9GQAVJcZpUcV6HLwzfjE6e9cWvwQe?usp=sharing",
 		createAt: "2020-07-25T14:10:26.113Z",
@@ -169,11 +169,17 @@ io.on('connection', (socket) => {
 	socket.emit('initialProjects', projects);
 
 	const updateRandomNumbers = () => {
-		projects.forEach((project) => {
-			if (project.progress === 100) {
-				return;
+		const randomIndex = Math.floor(Math.random() * projects.length);
+		projects.forEach((project, index) => {
+			if (randomIndex === index) {
+				if (project.progress === 100) {
+					return;
+				}
+				project.progress = getRandomNumberInRange(project.progress, 100)
 			}
-			project.progress = getRandomNumberInRange(project.progress, 100)
+			return;
+
+
 		});
 		io.emit('updateProjects', projects);
 	};
